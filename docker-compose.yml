@@ -1,0 +1,29 @@
+dvb:
+  build: "/home/sparklyballs/dvb-docker"
+  container_name: dvb-docker
+  environment:
+    - S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+  volumes: 
+    - /dev/dvb:/dev/dvb
+  restart: always
+  privileged: true
+
+tvheadend:
+  build: "/home/sparklyballs/tvheadend"
+  container_name: tvheadend
+  restart: always
+  devices:
+    - /dev/dvb:/dev/dvb
+  volumes:
+    - /config:/config
+    - /config/35-config:/etc/cont-init.d/35-config
+    - /recordings:/recordings
+    - /timeshift:/timeshift
+  ports:
+    - 9981:9981
+    - 9982:9982
+  environment:
+    - PUID=99
+    - PGID=100
+    - S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+    - TZ=Europe/London
