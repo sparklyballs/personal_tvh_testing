@@ -4,7 +4,6 @@ set -ex
 
 [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
 
-mv dvb-docker docker-compose.yml /home/sparklyballs/
 
 sudo useradd -u 99 -g 100 -d /config -s /bin/false tvheadend
 sudo usermod -G video tvheadend
@@ -13,11 +12,15 @@ sudo mkdir -p \
 /config \
 /recordings \
 /timeshift
+/home/sparklyballs/tvheadend
 
 sudo chown -R \
 /config \
 /recordings \
 /timeshift
+
+mv dvb-docker docker-compose.yml /home/sparklyballs/
+mv Dockerfile root /home/sparklyballs/tvheadend/
 
 sudo apt-get update
 sudo apt-get install -y \
