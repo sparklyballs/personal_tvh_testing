@@ -11,10 +11,10 @@ sudo usermod -G video tvheadend
 sudo mkdir -p \
 /config \
 /recordings \
-/timeshift
+/timeshift \
 /home/sparklyballs/tvheadend
 
-sudo chown -R \
+sudo chown -R 99:100 \
 /config \
 /recordings \
 /timeshift
