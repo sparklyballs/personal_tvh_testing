@@ -132,7 +132,7 @@ RUN \
 	libxmltv-perl \
 	pcre2-utils \
 	pngquant \
-	xmltv-util&& \
+	xmltv-util && \
  echo "**** add picons ****" && \
  mkdir -p \
 	/picons && \
